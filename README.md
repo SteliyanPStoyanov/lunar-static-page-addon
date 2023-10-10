@@ -17,7 +17,7 @@
 ### Require the composer package
 
 ```sh
-composer require lunarphp/static-pages
+composer require lunar-static-pages/addon
 ```
 
 ## Contributing
