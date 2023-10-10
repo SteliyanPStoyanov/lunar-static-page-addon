@@ -19,7 +19,15 @@
 ```sh
 composer require lunar-static-pages/addon
 ```
+### Run artisan
 
+```sh
+php artisan lunar:addons:discover
+```
+
+```sh
+php artisan migrate
+```
 ## Contributing
 
 Contributions are welcome, if you are thinking of adding a feature, please submit an issue first so we can determine whether it should be included.
