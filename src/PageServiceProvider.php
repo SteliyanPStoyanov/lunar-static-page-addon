@@ -16,6 +16,7 @@ use Lunar\StaticPages\Http\Livewire\Components\Admin\Pages\PagesTable;
 use Lunar\StaticPages\Models\Page;
 use Illuminate\Support\Facades\Config;
 use Lunar\StaticPages\Search\PageIndexer;
+use Lunar\Hub\Facades\Menu;
 
 class PageServiceProvider extends ServiceProvider
 {
@@ -27,20 +28,29 @@ class PageServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $manifestAttribute = app(AttributeManifestInterface::class);
         Route::bind('page', function ($id) {
             return Page::withTrashed()->findOrFail($id);
         });
 
+        $manifestAttribute = app(AttributeManifestInterface::class);
         $manifestAttribute->addType(Page::class);
-        $manifest = $this->app->get(Manifest::class);
 
+        $manifest = $this->app->get(Manifest::class);
         $manifest->addPermission(function (Permission $permission) {
             $permission->name = 'Manage Pages';
             $permission->handle = 'manage-pages'; // or 'group:handle to group permissions
             $permission->description = 'Allow the staff member to manage pages';
         });
 
+        $slot = Menu::slot('sidebar');
+
+        $slot->addItem(function ($item) {
+            $item
+                ->name(__('menu.sidebar.pages'))
+                ->handle('hub.pages')
+                ->route('hub.pages.index')
+                ->icon('book-open');
+        });
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
