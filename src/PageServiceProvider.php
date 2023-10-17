@@ -35,11 +35,13 @@ class PageServiceProvider extends ServiceProvider
         $manifestAttribute = app(AttributeManifestInterface::class);
         $manifestAttribute->addType(Page::class);
 
-        $manifest = $this->app->get(Manifest::class);
-        $manifest->addPermission(function (Permission $permission) {
-            $permission->name = 'Manage Pages';
-            $permission->handle = 'manage-pages'; // or 'group:handle to group permissions
-            $permission->description = 'Allow the staff member to manage pages';
+        $this->app->booted(function () {
+            $manifest = $this->app->get(Manifest::class);
+            $manifest->addPermission(function (Permission $permission) {
+                $permission->name = 'Manage Pages';
+                $permission->handle = 'manage-pages'; // or 'group:handle to group permissions
+                $permission->description = 'Allow the staff member to manage pages';
+            });
         });
 
         $slot = Menu::slot('sidebar');
