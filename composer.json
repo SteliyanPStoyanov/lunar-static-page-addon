@@ -1,6 +1,6 @@
 {
     "name": "lunar-static-pages/addon",
-    "version": "0.1",
+    "version": "0.1.1",
     "type": "project",
     "description": "Static Pages functionality for Lunar.",
     "keywords": [
