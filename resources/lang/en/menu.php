@@ -5,4 +5,5 @@ return [
     'page.attributes' => 'Attributes',
     'page.images' => 'Images',
     'page.urls' => 'Urls',
+    'sidebar.pages' => 'Pages',
 ];
