@@ -40,7 +40,7 @@ class PageServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $manifest = $this->app->get(Manifest::class);
             $manifest->addPermission(function (Permission $permission) {
-                $permission->name = __('pages::global.manage.pages');
+                $permission->name = __('pages::global.manage.pages.title');
                 $permission->handle = 'manage-pages'; // or 'group:handle to group permissions
                 $permission->description = __('pages::global.manage.pages.description');
             });

@@ -6,5 +6,5 @@ return [
     'cancel' => 'Cancel',
     'delete' => 'Delete',
     'manage.pages.description' => 'Allow the staff member to manage pages',
-    'manage.pages' => 'Manage Pages'
+    'manage.pages.title' => 'Manage Pages'
 ];
