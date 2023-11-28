@@ -48,7 +48,7 @@ class PageServiceProvider extends ServiceProvider
 
         $slot->addItem(function ($item) {
             $item
-                ->name(__('menu.sidebar.pages'))
+                ->name(__('pages::menu.sidebar.pages'))
                 ->handle('hub.pages')
                 ->route('hub.pages.index')
                 ->icon('book-open');

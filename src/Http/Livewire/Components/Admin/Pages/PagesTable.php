@@ -73,9 +73,8 @@ class PagesTable extends Table
         );
         $this->tableBuilder->baseColumns([
             BadgeColumn::make('status', function ($record) {
-                return __(
-                    'pages::components.pages.index.' . ($record->deleted_at ? 'deleted' : $record->status)
-                );
+                $Status = 'pages::components.pages.index.' . ($record->deleted_at ? 'deleted' : $record->status);
+                return __($Status);
             })->states(function ($record) {
                 return [
                     'success' => $record->status == 'published' && !$record->deleted_at,
