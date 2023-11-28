@@ -8,4 +8,6 @@ return [
     'pages.index.deleted' => 'Deleted',
     'pages.index.title' => 'Pages',
     'pages.index.create_page' => 'Create Page',
+    'pages.index.edit_page' => 'Edit Page',
+    'pages.index.all_statuses' => 'All Statuses',
 ];

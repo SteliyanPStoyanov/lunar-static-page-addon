@@ -39,34 +39,14 @@
         </div>
       </div>
     @endif
-    <!--
-      Select popover, show/hide based on select state.
-
-      Entering: ""
-        From: ""
-        To: ""
-      Leaving: "transition ease-in duration-100"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
     <ul x-cloak x-show="showStatusPicker" @click.outside="showStatusPicker = false" class="absolute right-0 z-10 -mt-24 overflow-hidden origin-bottom-right bg-white divide-y divide-gray-200 rounded-md shadow-lg bottom-12 w-72 ring-1 ring-black ring-opacity-5 focus:outline-none" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-0">
-      <!--
-        Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
-
-        Highlighted: "text-white bg-sky-500", Not Highlighted: "text-gray-900"
-      -->
       <li class="relative p-4 text-sm text-gray-900 cursor-default select-none @if($page->status != 'published') hover:bg-gray-100 @endif" id="listbox-option-0" role="option">
         <button type="button" class="flex flex-col" wire:click.prevent="$set('page.status', 'published')">
-          <div class="flex justify-between cursor-pointer">
+          <span class="flex justify-between cursor-pointer">
             <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
             <p class="@if($page->status == 'published') font-semibold @else font-normal @endif">
               {{ __('pages::partials.pages.status-bar.published.label')}}
             </p>
-            <!--
-              Checkmark, only display for selected option.
-
-              Highlighted: "text-white", Not Highlighted: "text-sky-500"
-            -->
             @if($page->status == 'published')
             <span class="text-green-500">
               <!-- Heroicon name: solid/check -->
@@ -75,26 +55,21 @@
               </svg>
             </span>
             @endif
-          </div>
+          </span>
           <!-- Highlighted: "text-sky-200", Not Highlighted: "text-gray-500" -->
-          <p class="mt-2 text-left text-gray-500">
+          <span class="mt-2 text-left text-gray-500">
             {{ __('pages::partials.pages.status-bar.published.description')}}
-          </p>
+          </span>
         </button>
       </li>
 
       <li class="relative p-4 text-sm text-gray-900 cursor-default select-none @if($page->status != 'draft') hover:bg-gray-100 @endif" id="listbox-option-0" role="option">
         <button type="button" class="flex flex-col cursor-pointer" wire:click.prevent="$set('page.status', 'draft')">
-          <div class="flex justify-between ">
+          <span class="flex justify-between ">
             <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
             <p class="@if($page->status == 'draft') font-semibold @else font-normal @endif">
               {{ __('pages::partials.pages.status-bar.draft.label')}}
             </p>
-            <!--
-              Checkmark, only display for selected option.
-
-              Highlighted: "text-white", Not Highlighted: "text-sky-500"
-            -->
             @if($page->status == 'draft')
             <span class="text-green-500">
               <!-- Heroicon name: solid/check -->
@@ -103,15 +78,13 @@
               </svg>
             </span>
             @endif
-          </div>
+          </span>
           <!-- Highlighted: "text-sky-200", Not Highlighted: "text-gray-500" -->
-          <p class="mt-2 text-left text-gray-500">
+          <span class="mt-2 text-left text-gray-500">
             {{ __('pages::partials.pages.status-bar.draft.description')}}
-          </p>
+          </span>
         </button>
       </li>
-
-      <!-- More items... -->
     </ul>
   </div>
 </div>

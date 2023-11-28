@@ -15,7 +15,7 @@ class PageCreate extends Component
     {
         return view('pages::livewire.admin.pages.create')
             ->layout('adminhub::layouts.app', [
-                'title' => 'Create Page',
+                'title' =>  __('pages::components.pages.index.create_page'),
             ]);
     }
 }

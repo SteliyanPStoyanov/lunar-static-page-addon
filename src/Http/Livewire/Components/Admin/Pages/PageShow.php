@@ -22,10 +22,7 @@ class PageShow extends AbstractPage
     public function delete()
     {
         $this->page->delete();
-        $this->notify(
-            __('pages::notifications.pages.deleted'),
-            'hub.pages.index'
-        );
+        $this->notify(__('pages::notifications.pages.deleted'),'hub.pages.index');
     }
 
     /**
@@ -37,9 +34,7 @@ class PageShow extends AbstractPage
     {
         $this->page->restore();
         $this->showRestoreConfirm = false;
-        $this->notify(
-            __('pages::notifications.pages.page_restored')
-        );
+        $this->notify(__('pages::notifications.pages.page_restored'));
     }
 
     /**

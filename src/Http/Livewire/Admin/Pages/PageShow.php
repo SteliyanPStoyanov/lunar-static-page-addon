@@ -22,7 +22,7 @@ class PageShow extends Component
 
         return view('pages::livewire.admin.pages.show')
             ->layout('adminhub::layouts.app', [
-                'title' => 'Edit Page',
+                'title' => __('pages::components.pages.index.edit_page'),
             ]);
     }
 }

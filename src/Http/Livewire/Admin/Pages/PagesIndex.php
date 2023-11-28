@@ -15,7 +15,7 @@ class PagesIndex extends Component
     {
         return view('pages::livewire.admin.pages.index')
             ->layout('adminhub::layouts.app', [
-                'title' => 'Pages',
+                'title' => __('pages::components.pages.index.title'),
             ]);
     }
 }
