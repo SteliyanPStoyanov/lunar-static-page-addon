@@ -48,16 +48,14 @@ class PagesTable extends Table
         $this->tableBuilder->addFilter(
             SelectFilter::make('status')->options(function () {
                 $statuses = collect([
-                    'published' => 'Published',
-                    'draft' => 'Draft',
+                    'published' => __('pages::components.pages.index.published'),
+                    'draft' => __('pages::components.pages.index.draft'),
                 ]);
-
                 return collect([
-                    null => 'All Statuses',
+                    null => __('pages::components.pages.index.all_statuses'),
                 ])->merge($statuses);
             })->query(function ($filters, $query) {
                 $value = $filters->get('status');
-
                 if ($value) {
                     $query->whereStatus($value);
                 }
@@ -138,7 +136,7 @@ class PagesTable extends Table
             'filters' => $this->filters,
         ]);
 
-        $this->notify('Search saved');
+        $this->notify( __('pages::notifications.page.search_saved'));
 
         $this->savedSearchName = null;
 

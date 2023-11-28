@@ -138,7 +138,7 @@ abstract class AbstractPage extends Component
             $this->updateSlots();
             $this->page->refresh();
             $this->dispatchBrowserEvent('remove-images');
-            $this->notify('page Saved');
+            $this->notify(__('pages::notifications.page.is_save'));
         });
 
         if ($isNew) {

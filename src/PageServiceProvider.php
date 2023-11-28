@@ -75,8 +75,8 @@ class PageServiceProvider extends ServiceProvider
     {
         Livewire::component('pages.admin.pages.pages-index', PagesIndex::class);
         Livewire::component('pages.admin.pages.pages-create', PageCreate::class);
-        Livewire::component('pages.components.admin.pages.pages-index', \Lunar\StaticPages\Http\Livewire\Components\Admin\Pages\PagesIndex::class);
-        Livewire::component('pages.components.admin.pages.page-create', \Lunar\StaticPages\Http\Livewire\Components\Admin\Pages\PageCreate::class);
+        Livewire::component('pages.components.admin.pages.pages-index', Http\Livewire\Components\Admin\Pages\PagesIndex::class);
+        Livewire::component('pages.components.admin.pages.page-create', Http\Livewire\Components\Admin\Pages\PageCreate::class);
         Livewire::component('pages.components.admin.pages.pages-table', PagesTable::class);
         Livewire::component('pages.components.admin.pages.page-show', PageShow::class);
         Livewire::component('pages.components.activity-log-feed', ActivityLogFeed::class);

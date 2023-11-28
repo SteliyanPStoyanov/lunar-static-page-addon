@@ -36,7 +36,6 @@
 <div class="pb-24 mt-8 lg:gap-8 lg:flex lg:items-start">
     <div class="space-y-6 lg:flex-1">
         <div class="space-y-6">
-
             @foreach ($this->getSlotsByPosition('top') as $slot)
                 <div id="{{ $slot->handle }}">
                     <div>
@@ -44,7 +43,6 @@
                     </div>
                 </div>
             @endforeach
-
             <div class="shadow sm:rounded-md">
                 <div class="flex-col px-4 py-5 space-y-4 bg-white rounded-md sm:p-6">
                     <header>
@@ -52,9 +50,7 @@
                             {{ __('pages::partials.pages.basic-information.heading') }}
                         </h3>
                     </header>
-
                     <div class="space-y-4">
-
                         <x-hub::input.group
                             :label="__('pages::inputs.title.label')"
                             for="title"
@@ -64,31 +60,21 @@
                         <x-hub::input.group
                             :label="__('pages::inputs.description.label')"
                             for="description"
-                            :errors="$errors->get('page.description') ?: $errors->get('page')"
-                        >
-                            <x-hub::input.richtext id="description" wire:model.defer="page.description"
-                                                   :initial-value="$page->description"/>
+                            :errors="$errors->get('page.description') ?: $errors->get('page')" >
+                            <x-hub::input.richtext id="description" wire:model.defer="page.description" :initial-value="$page->description"/>
                         </x-hub::input.group>
                     </div>
                 </div>
             </div>
-
             <div id="attributes">
                 @include('adminhub::partials.attributes')
             </div>
-
             <div id="images">
-                @include('pages::partials.image-manager', [
-                    'existing' => $images,
-                    'wireModel' => 'imageUploadQueue',
-                    'filetypes' => ['image/*'],
-                ])
+                @include('pages::partials.image-manager', [ 'existing' => $images, 'wireModel' => 'imageUploadQueue', 'filetypes' => ['image/*'], ])
             </div>
-
             <div id="urls">
                 @include('adminhub::partials.urls')
             </div>
-
             @foreach ($this->getSlotsByPosition('bottom') as $slot)
                 <div id="{{ $slot->handle }}">
                     <div>
@@ -96,31 +82,23 @@
                     </div>
                 </div>
             @endforeach
-
             @if ($page->id)
-
                 <div
-                    @class([
-                        'bg-white border rounded shadow',
+                    @class(['bg-white border rounded shadow',
                         'border-red-300' => !$page->deleted_at,
                         'border-gray-300' => $page->deleted_at,
-                    ])
-                >
+                    ]) >
                     <header
-                        @class([
-                            'px-6 py-4 bg-white border-b rounded-t',
+                        @class(['px-6 py-4 bg-white border-b rounded-t',
                             'border-red-300 text-red-700' => !$page->deleted_at,
                             'border-gray-300 text-gray-700' => $page->deleted_at,
-                        ])
-                    >
+                        ])>
                         @if($page->deleted_at)
                             {{ __('pages::inputs.restore_zone.title') }}
                         @else
                             {{ __('pages::inputs.danger_zone.title') }}
                         @endif
-
                     </header>
-
                     <div class="p-6 text-sm">
                         <div class="grid grid-cols-12 gap-4">
                             <div class="col-span-12 lg:col-span-8">
@@ -134,9 +112,9 @@
 
                                 <p class="text-xs text-gray-600">
                                     @if($page->deleted_at)
-                                        {{ __('pages::catalogue.pages.show.restore_strapline') }}
+                                        {{ __('pages::catalogue.pages.show.restore_strapLine') }}
                                     @else
-                                        {{ __('pages::catalogue.pages.show.delete_strapline') }}
+                                        {{ __('pages::catalogue.pages.show.delete_strapLine') }}
                                     @endif
 
                                 </p>
@@ -144,17 +122,11 @@
 
                             <div class="col-span-6 text-right lg:col-span-4">
                                 @if($page->deleted_at)
-                                    <x-hub::button :disabled="false"
-                                                   wire:click="$set('showRestoreConfirm', true)"
-                                                   type="button"
-                                                   theme="green">
+                                    <x-hub::button :disabled="false" wire:click="$set('showRestoreConfirm', true)" type="button" theme="green">
                                         {{ __('pages::global.restore') }}
                                     </x-hub::button>
                                 @else
-                                    <x-hub::button :disabled="false"
-                                                   wire:click="$set('showDeleteConfirm', true)"
-                                                   type="button"
-                                                   theme="danger">
+                                    <x-hub::button :disabled="false" wire:click="$set('showDeleteConfirm', true)" type="button" theme="danger">
                                         {{ __('pages::global.delete') }}
                                     </x-hub::button>
                                 @endif
@@ -162,62 +134,45 @@
                         </div>
                     </div>
                 </div>
-
                 <x-hub::modal.dialog wire:model="showRestoreConfirm">
                     <x-slot name="title">
                         {{ __('pages::catalogue.pages.show.restore_title') }}
                     </x-slot>
-
                     <x-slot name="content">
-                        {{ __('pages::catalogue.pages.show.restore_strapline') }}
+                        {{ __('pages::catalogue.pages.show.restore_strapLine') }}
                     </x-slot>
-
                     <x-slot name="footer">
                         <div class="flex items-center justify-end space-x-4">
-                            <x-hub::button theme="gray"
-                                           type="button"
-                                           wire:click.prevent="$set('showRestoreConfirm', false)">
+                            <x-hub::button theme="gray" type="button"  wire:click.prevent="$set('showRestoreConfirm', false)">
                                 {{ __('pages::global.cancel') }}
                             </x-hub::button>
-
-                            <x-hub::button wire:click="restore"
-                                           theme="green">
+                            <x-hub::button wire:click="restore" theme="green">
                                 {{ __('pages::catalogue.pages.show.restore_btn') }}
                             </x-hub::button>
                         </div>
                     </x-slot>
                 </x-hub::modal.dialog>
-
                 <x-hub::modal.dialog wire:model="showDeleteConfirm">
                     <x-slot name="title">
                         {{ __('pages::catalogue.pages.show.delete_title') }}
                     </x-slot>
-
                     <x-slot name="content">
-                        {{ __('pages::catalogue.pages.show.delete_strapline') }}
+                        {{ __('pages::catalogue.pages.show.delete_strapLine') }}
                     </x-slot>
-
                     <x-slot name="footer">
                         <div class="flex items-center justify-end space-x-4">
-                            <x-hub::button theme="gray"
-                                           type="button"
-                                           wire:click.prevent="$set('showDeleteConfirm', false)">
+                            <x-hub::button theme="gray" type="button" wire:click.prevent="$set('showDeleteConfirm', false)">
                                 {{ __('pages::global.cancel') }}
                             </x-hub::button>
-
-                            <x-hub::button wire:click="delete"
-                                           theme="danger">
+                            <x-hub::button wire:click="delete" theme="danger">
                                 {{ __('pages::catalogue.pages.show.delete_btn') }}
                             </x-hub::button>
                         </div>
                     </x-slot>
                 </x-hub::modal.dialog>
             @endif
-
             <div class="pt-12 mt-12 border-t">
-                @livewire('pages.components.activity-log-feed', [
-                'subject' => $page,
-                ])
+                @livewire('pages.components.activity-log-feed', ['subject' => $page,])
             </div>
         </div>
     </div>
