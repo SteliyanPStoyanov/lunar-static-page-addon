@@ -28,6 +28,8 @@ class PageServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'pages');
+
         Route::bind('page', function ($id) {
             return Page::withTrashed()->findOrFail($id);
         });
@@ -38,9 +40,9 @@ class PageServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $manifest = $this->app->get(Manifest::class);
             $manifest->addPermission(function (Permission $permission) {
-                $permission->name = 'Manage Pages';
+                $permission->name = __('pages::global.manage.pages');
                 $permission->handle = 'manage-pages'; // or 'group:handle to group permissions
-                $permission->description = 'Allow the staff member to manage pages';
+                $permission->description = __('pages::global.manage.pages.description');
             });
         });
 
@@ -57,7 +59,7 @@ class PageServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'pages');
-        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'pages');
+
 
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
